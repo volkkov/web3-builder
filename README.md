@@ -32,7 +32,7 @@ Every day it:
 
 | Section | Description |
 |---------|-------------|
-| 📊 Today's Snapshot | Overall vibe in Web3 building |
+| 📊 Today's Snapshot | Overall vibe in Web3 building today |
 | 🔥 Top 3 Projects | Most interesting repos and why they matter |
 | 📈 Tech Trends Rising | Languages & frameworks gaining momentum |
 | 💀 What's Cooling Down | Signs of declining interest |
@@ -42,3 +42,87 @@ Every day it:
 ---
 
 ## 🏗️ How it works
+
+```
+GitHub Actions (cron: 8:00 + 9:00 UTC)
+        │
+        ▼
+   bot.js runs
+        │
+        ├── Fetches trending repos from GitHub API
+        │   (ethereum, solana, web3, defi, dao...)
+        │
+        ├── Sends to OpenRouter AI (openrouter/auto)
+        │   for analysis and report generation
+        │
+        ├── Saves report-YYYY-MM-DD.md
+        ├── Updates history.json
+        └── Updates stats.json
+             │
+             ▼
+      git commit & push
+      (github-actions[bot] + volkkov)
+```
+
+---
+
+## 🗂️ Repository Structure
+
+```
+web3-builder/
+├── 📄 bot.js                    # Main AI bot
+├── 📄 index.html                # Cosmic web dashboard
+├── 📄 package.json              # Dependencies
+├── 📁 reports/
+│   ├── 📄 report-YYYY-MM-DD.md  # Daily reports
+│   ├── 📄 history.json          # Reports archive
+│   └── 📄 stats.json            # Stars data for charts
+└── 📁 .github/workflows/
+    └── 📄 daily-report.yml      # Automation config
+```
+
+---
+
+## ⚙️ Tech Stack
+
+<div align="center">
+
+| Layer | Technology |
+|-------|-----------|
+| 🤖 AI | OpenRouter (auto model selection) |
+| ⚡ Runtime | Node.js 22 |
+| 🔄 Automation | GitHub Actions |
+| 🌐 Frontend | Vanilla HTML + Chart.js |
+| 🚀 Hosting | Vercel |
+| 📡 Data | GitHub REST API |
+
+</div>
+
+---
+
+## 🚀 Self-Hosted Setup
+
+1. Fork this repo
+2. Add secrets in `Settings → Secrets → Actions`:
+   - `OPENAI_API_KEY` — your OpenRouter key
+   - `GH_PAT` — GitHub token with `repo` + `workflow`
+   - `TALENT_WALLET` — your Base wallet address
+3. Go to `Actions` → `Daily Web3 Builder Pulse` → `Run workflow`
+4. Done — bot runs itself every day ✅
+
+---
+
+## 📈 Contribution Activity
+
+> Both **volkkov** and **github-actions[bot]** contribute daily to this repo.
+> The bot commits every report automatically — watch the contribution graph grow! 🟩
+
+---
+
+<div align="center">
+
+**Built by [volkkov](https://github.com/volkkov) · Powered by OpenRouter AI · Runs on GitHub Actions**
+
+⭐ Star this repo if you find it useful!
+
+</div>
