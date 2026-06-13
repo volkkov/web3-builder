@@ -4,217 +4,326 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="talent-verify" content="volkkov">
+  <meta property="og:title" content="Web3 Builder Pulse 🔭">
+  <meta property="og:description" content="Daily AI-powered digest of what Web3 builders are actually shipping">
   <title>Web3 Builder Pulse 🔭</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cyan: #00f5ff;
+      --purple: #7b2fff;
+      --pink: #ff006e;
+      --dark: #000010;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(0,245,255,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      background: #000010;
+      background: var(--dark);
       color: #e0e0ff;
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* STARS */
+    /* ── CANVAS ── */
     #stars-canvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
       z-index: 0;
       pointer-events: none;
     }
 
     .content { position: relative; z-index: 1; }
 
-    /* HEADER */
-    header {
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 40px 20px;
+      position: relative;
     }
 
-    .logo {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(28px, 5vw, 56px);
-      font-weight: 900;
-      background: linear-gradient(135deg, #00f5ff, #7b2fff, #ff006e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: none;
-      letter-spacing: 2px;
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(123,47,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: glowPulse 4s ease-in-out infinite;
     }
 
-    .tagline {
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,245,255,0.07);
+      border: 1px solid rgba(0,245,255,0.2);
+      border-radius: 100px;
+      padding: 6px 18px;
       font-family: 'Orbitron', monospace;
-      font-size: 13px;
-      color: #7b8cde;
-      margin-top: 12px;
+      font-size: 10px;
+      color: var(--cyan);
       letter-spacing: 3px;
-      text-transform: uppercase;
+      margin-bottom: 32px;
     }
 
-    .pulse-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      background: #00f5ff;
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--cyan);
       border-radius: 50%;
-      margin-right: 8px;
+      box-shadow: 0 0 8px var(--cyan);
       animation: pulse 2s infinite;
-      box-shadow: 0 0 10px #00f5ff;
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+      50% { opacity: 0.3; transform: scale(0.7); }
     }
 
-    /* STATS BAR */
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding: 20px;
-      margin: 0 auto 40px;
-      max-width: 800px;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
+    .logo {
       font-family: 'Orbitron', monospace;
-      font-size: 32px;
-      font-weight: 700;
-      color: #00f5ff;
-      text-shadow: 0 0 20px #00f5ff88;
+      font-size: clamp(36px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
     }
 
-    .stat-label {
-      font-size: 11px;
-      color: #7b8cde;
+    .hero-sub {
+      font-size: clamp(14px, 2vw, 18px);
+      color: #8890bb;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 50px;
+    }
+
+    .hero-sub span {
+      color: var(--cyan);
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: flex;
+      gap: 1px;
+      background: rgba(0,245,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 50px;
+    }
+
+    .stat-box {
+      flex: 1;
+      padding: 20px 30px;
+      text-align: center;
+      background: var(--dark);
+      transition: background 0.3s;
+    }
+
+    .stat-box:hover { background: rgba(0,245,255,0.04); }
+
+    .stat-box + .stat-box {
+      border-left: 1px solid rgba(0,245,255,0.08);
+    }
+
+    .stat-num {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-lbl {
+      font-size: 10px;
+      color: #4a5080;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-top: 4px;
     }
 
-    /* CHART SECTION */
-    .chart-section {
-      max-width: 900px;
-      margin: 0 auto 50px;
-      padding: 0 20px;
+    .scroll-hint {
+      font-family: 'Orbitron', monospace;
+      font-size: 10px;
+      color: #3a4060;
+      letter-spacing: 3px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      color: var(--purple);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
     .section-title {
       font-family: 'Orbitron', monospace;
-      font-size: 16px;
-      color: #7b2fff;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #e0e8ff;
+      margin-bottom: 40px;
     }
 
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, #7b2fff44, transparent);
-    }
-
-    .chart-card {
-      background: rgba(123, 47, 255, 0.05);
-      border: 1px solid rgba(123, 47, 255, 0.2);
-      border-radius: 16px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-    }
-
-    /* REPORTS GRID */
-    .reports-section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
-
-    .reports-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .report-card {
-      background: rgba(0, 245, 255, 0.03);
-      border: 1px solid rgba(0, 245, 255, 0.1);
-      border-radius: 16px;
-      padding: 24px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    /* ── CHART ── */
+    .chart-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
       position: relative;
       overflow: hidden;
     }
 
-    .report-card::before {
+    .chart-wrap::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #00f5ff, #7b2fff);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0.4;
+    }
+
+    /* ── REPORTS GRID ── */
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .report-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      group: true;
+    }
+
+    .report-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,245,255,0.05), rgba(123,47,255,0.05));
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.35s;
+      border-radius: 20px;
     }
 
     .report-card:hover {
-      border-color: rgba(0, 245, 255, 0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 245, 255, 0.1);
+      border-color: rgba(0,245,255,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0,245,255,0.08), 0 0 0 1px rgba(0,245,255,0.1);
     }
 
-    .report-card:hover::before { opacity: 1; }
+    .report-card:hover::after { opacity: 1; }
 
-    .report-date {
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .card-num {
       font-family: 'Orbitron', monospace;
-      font-size: 14px;
-      color: #00f5ff;
+      font-size: 10px;
+      color: #3a4060;
+      letter-spacing: 2px;
+    }
+
+    .card-arrow {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #3a4060;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .report-card:hover .card-arrow {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0,245,255,0.3);
+    }
+
+    .card-date {
+      font-family: 'Orbitron', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #c0ccff;
       margin-bottom: 12px;
     }
 
-    .report-repos {
+    .card-date span {
+      color: var(--cyan);
+    }
+
+    .card-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 12px;
     }
 
-    .repo-tag {
-      font-size: 10px;
-      background: rgba(123, 47, 255, 0.2);
-      border: 1px solid rgba(123, 47, 255, 0.3);
-      color: #b09fff;
-      padding: 3px 8px;
-      border-radius: 20px;
+    .tag {
+      font-size: 9px;
       font-family: 'Orbitron', monospace;
-    }
-
-    .report-number {
-      font-size: 11px;
-      color: #7b8cde;
+      background: rgba(123,47,255,0.12);
+      border: 1px solid rgba(123,47,255,0.25);
+      color: #9b7fff;
+      padding: 4px 10px;
+      border-radius: 100px;
       letter-spacing: 1px;
     }
 
-    /* MODAL */
+    /* ── MODAL ── */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 16, 0.95);
-      z-index: 100;
+      background: rgba(0,0,16,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
       overflow-y: auto;
       padding: 20px;
     }
@@ -222,80 +331,132 @@
     .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
 
     .modal {
-      background: #050520;
-      border: 1px solid rgba(0, 245, 255, 0.2);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 800px;
+      background: #06061e;
+      border: 1px solid rgba(0,245,255,0.15);
+      border-radius: 28px;
+      padding: 50px;
+      max-width: 780px;
       width: 100%;
       margin: 40px auto;
       position: relative;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(0,245,255,0.05);
+    }
+
+    .modal::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 40px; right: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0.5;
     }
 
     .modal-close {
       position: absolute;
-      top: 20px; right: 20px;
-      background: none;
-      border: 1px solid rgba(0, 245, 255, 0.3);
-      color: #00f5ff;
-      width: 36px; height: 36px;
+      top: 24px; right: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #8890bb;
+      width: 40px; height: 40px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 16px;
       display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
 
-    .modal-close:hover { background: rgba(0, 245, 255, 0.1); }
-
-    .modal-content {
-      white-space: pre-wrap;
-      line-height: 1.8;
-      color: #c0c8ff;
-      font-size: 14px;
+    .modal-close:hover {
+      background: rgba(0,245,255,0.08);
+      border-color: var(--cyan);
+      color: var(--cyan);
     }
 
-    .modal-content h2 {
-      font-family: 'Orbitron', monospace;
-      color: #00f5ff;
-      font-size: 18px;
-      margin: 24px 0 12px;
+    .modal-body {
+      line-height: 1.9;
+      color: #a0aace;
+      font-size: 15px;
     }
 
-    .modal-content h3 {
+    .modal-body h2 {
       font-family: 'Orbitron', monospace;
-      color: #7b2fff;
-      font-size: 14px;
-      margin: 20px 0 8px;
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 32px 0 16px;
+      line-height: 1.4;
     }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-family: 'Orbitron', monospace;
-      font-size: 10px;
-      color: #2a2a5a;
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 1;
-    }
+    .modal-body h2:first-child { margin-top: 0; }
 
-    .loading {
-      text-align: center;
-      padding: 60px;
+    .modal-body h3 {
       font-family: 'Orbitron', monospace;
-      color: #7b8cde;
       font-size: 13px;
+      color: var(--purple);
+      letter-spacing: 2px;
+      margin: 24px 0 10px;
+    }
+
+    .modal-body strong { color: #e0e8ff; }
+
+    .modal-body pre {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(0,245,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      font-size: 13px;
+      color: var(--cyan);
+      margin: 16px 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .footer-sub {
+      font-size: 11px;
+      color: #2a3050;
       letter-spacing: 2px;
     }
 
-    .error-msg {
-      text-align: center;
-      color: #ff4466;
-      font-family: 'Orbitron', monospace;
-      font-size: 12px;
-      padding: 20px;
+    /* ── LOADING ── */
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 12px;
+      height: 140px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,245,255,0.1), transparent);
+      margin: 0;
     }
   </style>
 </head>
@@ -303,215 +464,232 @@
 <canvas id="stars-canvas"></canvas>
 
 <div class="content">
-  <header>
-    <div class="logo">🔭 Web3 Builder Pulse</div>
-    <div class="tagline"><span class="pulse-dot"></span>Daily AI digest · What builders are shipping</div>
-  </header>
 
-  <div class="stats-bar" id="stats-bar">
-    <div class="stat-item">
-      <div class="stat-number" id="stat-reports">—</div>
-      <div class="stat-label">Reports</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="badge"><span class="badge-dot"></span>LIVE · UPDATES DAILY</div>
+    <h1 class="logo">Web3 Builder<br>Pulse</h1>
+    <p class="hero-sub">
+      <span>AI-powered</span> daily digest tracking what<br>
+      the best Web3 builders are actually shipping
+    </p>
+    <div class="stats-row" id="stats-row">
+      <div class="stat-box">
+        <div class="stat-num" id="s-reports">—</div>
+        <div class="stat-lbl">Reports</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="s-streak">—</div>
+        <div class="stat-lbl">Day Streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="s-repos">—</div>
+        <div class="stat-lbl">Repos Tracked</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number" id="stat-streak">—</div>
-      <div class="stat-label">Day Streak</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" id="stat-repos">—</div>
-      <div class="stat-label">Repos Tracked</div>
-    </div>
-  </div>
+    <div class="scroll-hint">▼ SCROLL TO EXPLORE</div>
+  </section>
 
-  <div class="chart-section">
-    <div class="section-title">📈 Top Repos by Stars</div>
-    <div class="chart-card">
-      <canvas id="starsChart" height="120"></canvas>
-    </div>
-  </div>
+  <div class="divider"></div>
 
-  <div class="reports-section">
-    <div class="section-title">📋 Daily Reports Archive</div>
-    <div id="reports-grid" class="reports-grid">
-      <div class="loading">LOADING REPORTS...</div>
+  <!-- CHART -->
+  <section class="section">
+    <div class="section-label">Live Data</div>
+    <div class="section-title">Top Repos by Stars ⭐</div>
+    <div class="chart-wrap">
+      <canvas id="starsChart" height="100"></canvas>
     </div>
-  </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- REPORTS -->
+  <section class="section">
+    <div class="section-label">Archive</div>
+    <div class="section-title">Daily Reports 📋</div>
+    <div class="reports-grid" id="reports-grid">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+  </section>
+
 </div>
 
-<div class="modal-overlay" id="modal-overlay">
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-content" id="modal-content">Loading...</div>
+    <div class="modal-body" id="modal-body">Loading...</div>
   </div>
 </div>
 
-<footer>WEB3 BUILDER PULSE · POWERED BY AI · BY VOLKKOV</footer>
+<div class="divider"></div>
+<footer>
+  <div class="footer-logo">🔭 Web3 Builder Pulse</div>
+  <div class="footer-sub">POWERED BY AI · BUILT BY VOLKKOV · RUNS ON GITHUB</div>
+</footer>
 
 <script>
-const GITHUB_USER = "volkkov";
-const GITHUB_REPO = "web3-builder";
-const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main`;
+const USER = "volkkov";
+const REPO = "web3-builder";
+const RAW = `https://raw.githubusercontent.com/${USER}/${REPO}/main`;
 
-// ── STARS ANIMATION ──────────────────────────────────────────
-const canvas = document.getElementById("stars-canvas");
-const ctx = canvas.getContext("2d");
-let stars = [];
+/* ── STARS ── */
+const cv = document.getElementById("stars-canvas");
+const cx = cv.getContext("2d");
+let ST = [];
 
 function initStars() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  stars = Array.from({ length: 200 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.5 + 0.2,
-    speed: Math.random() * 0.3 + 0.05,
-    opacity: Math.random()
+  cv.width = window.innerWidth;
+  cv.height = window.innerHeight;
+  ST = Array.from({ length: 250 }, () => ({
+    x: Math.random() * cv.width,
+    y: Math.random() * cv.height,
+    r: Math.random() * 1.4 + 0.2,
+    vx: (Math.random() - 0.5) * 0.15,
+    vy: Math.random() * 0.2 + 0.05,
+    o: Math.random(),
+    do: (Math.random() - 0.5) * 0.01
   }));
 }
 
-function animateStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  stars.forEach(s => {
-    s.opacity += (Math.random() - 0.5) * 0.02;
-    s.opacity = Math.max(0.1, Math.min(1, s.opacity));
-    s.y += s.speed;
-    if (s.y > canvas.height) { s.y = 0; s.x = Math.random() * canvas.width; }
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(180, 200, 255, ${s.opacity})`;
-    ctx.fill();
+function drawStars() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  ST.forEach(s => {
+    s.o = Math.max(0.05, Math.min(1, s.o + s.do));
+    if (Math.random() < 0.005) s.do *= -1;
+    s.x += s.vx; s.y += s.vy;
+    if (s.y > cv.height) { s.y = 0; s.x = Math.random() * cv.width; }
+    if (s.x < 0 || s.x > cv.width) s.x = Math.random() * cv.width;
+    cx.beginPath();
+    cx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    cx.fillStyle = `rgba(180,200,255,${s.o})`;
+    cx.fill();
   });
-  requestAnimationFrame(animateStars);
+  requestAnimationFrame(drawStars);
 }
 
 window.addEventListener("resize", initStars);
-initStars();
-animateStars();
+initStars(); drawStars();
 
-// ── LOAD DATA ────────────────────────────────────────────────
-async function loadStats() {
-  try {
-    const res = await fetch(`${RAW_BASE}/reports/stats.json?t=${Date.now()}`);
-    if (!res.ok) return null;
-    return await res.json();
-  } catch { return null; }
+/* ── FETCH ── */
+async function get(path) {
+  const r = await fetch(`${RAW}/${path}?t=${Date.now()}`);
+  if (!r.ok) throw new Error(r.status);
+  return r;
 }
 
-async function loadHistory() {
-  try {
-    const res = await fetch(`${RAW_BASE}/reports/history.json?t=${Date.now()}`);
-    if (!res.ok) return [];
-    return await res.json();
-  } catch { return []; }
-}
-
-async function loadReport(filename) {
-  const res = await fetch(`${RAW_BASE}/reports/${filename}?t=${Date.now()}`);
-  if (!res.ok) throw new Error("Not found");
-  return await res.text();
-}
-
-// ── RENDER CHART ─────────────────────────────────────────────
-function renderChart(topRepos) {
-  const chartCtx = document.getElementById("starsChart").getContext("2d");
-  new Chart(chartCtx, {
+/* ── CHART ── */
+let chartInstance = null;
+function renderChart(repos) {
+  if (chartInstance) chartInstance.destroy();
+  const top = repos.slice(0, 8);
+  chartInstance = new Chart(
+    document.getElementById("starsChart").getContext("2d"), {
     type: "bar",
     data: {
-      labels: topRepos.map(r => r.name),
+      labels: top.map(r => r.name),
       datasets: [{
-        label: "⭐ Stars",
-        data: topRepos.map(r => r.stars),
-        backgroundColor: topRepos.map((_, i) =>
-          `hsla(${200 + i * 30}, 100%, 60%, 0.6)`
-        ),
-        borderColor: topRepos.map((_, i) =>
-          `hsla(${200 + i * 30}, 100%, 70%, 1)`
-        ),
+        data: top.map(r => r.stars),
+        backgroundColor: top.map((_, i) =>
+          `hsla(${180 + i * 25}, 90%, 60%, 0.5)`),
+        borderColor: top.map((_, i) =>
+          `hsla(${180 + i * 25}, 90%, 70%, 0.9)`),
         borderWidth: 1,
-        borderRadius: 6
+        borderRadius: 8,
+        borderSkipped: false
       }]
     },
     options: {
       responsive: true,
-      plugins: {
-        legend: { display: false }
+      plugins: { legend: { display: false },
+        tooltip: {
+          backgroundColor: "rgba(6,6,30,0.95)",
+          borderColor: "rgba(0,245,255,0.2)",
+          borderWidth: 1,
+          titleColor: "#00f5ff",
+          bodyColor: "#8890bb",
+          titleFont: { family: "Orbitron", size: 11 }
+        }
       },
       scales: {
-        x: {
-          ticks: { color: "#7b8cde", font: { family: "Orbitron", size: 10 } },
-          grid: { color: "rgba(123,47,255,0.1)" }
-        },
-        y: {
-          ticks: { color: "#7b8cde", font: { size: 10 } },
-          grid: { color: "rgba(123,47,255,0.1)" }
-        }
+        x: { ticks: { color: "#4a5080", font: { family: "Orbitron", size: 9 } },
+             grid: { color: "rgba(255,255,255,0.03)" } },
+        y: { ticks: { color: "#4a5080", font: { size: 10 } },
+             grid: { color: "rgba(255,255,255,0.03)" } }
       }
     }
   });
 }
 
-// ── RENDER REPORTS ───────────────────────────────────────────
+/* ── REPORTS ── */
 function renderReports(history) {
   const grid = document.getElementById("reports-grid");
   if (!history.length) {
-    grid.innerHTML = `<div class="error-msg">No reports yet — bot runs soon! 🤖</div>`;
+    grid.innerHTML = `<p style="color:#3a4060;font-family:Orbitron,monospace;font-size:12px;letter-spacing:2px;padding:40px 0">NO REPORTS YET — BOT RUNS SOON</p>`;
     return;
   }
-
-  grid.innerHTML = history.map((item, i) => `
-    <div class="report-card" onclick="openReport('${item.reportFile}', '${item.date}')">
-      <div class="report-number">REPORT #${history.length - i}</div>
-      <div class="report-date">📅 ${item.date}</div>
-      <div class="report-repos">
-        ${(item.topRepos || []).slice(0, 3).map(r =>
-          `<span class="repo-tag">${r.name}</span>`
-        ).join("")}
+  grid.innerHTML = history.map((item, i) => {
+    const [y, m, d] = item.date.split("-");
+    return `
+    <div class="report-card" onclick="openReport('${item.reportFile}','${item.date}')">
+      <div class="card-top">
+        <span class="card-num">REPORT #${history.length - i}</span>
+        <span class="card-arrow">→</span>
       </div>
-    </div>
-  `).join("");
+      <div class="card-date"><span>${d}</span> ${new Date(item.date).toLocaleString('en',{month:'long'})} ${y}</div>
+      <div class="card-tags">
+        ${(item.topRepos||[]).slice(0,3).map(r=>`<span class="tag">${r.name}</span>`).join("")}
+      </div>
+    </div>`;
+  }).join("");
 }
 
-// ── MODAL ────────────────────────────────────────────────────
-async function openReport(filename, date) {
-  const overlay = document.getElementById("modal-overlay");
-  const content = document.getElementById("modal-content");
+/* ── MODAL ── */
+async function openReport(file, date) {
+  const overlay = document.getElementById("modal");
+  const body = document.getElementById("modal-body");
   overlay.classList.add("active");
-  content.innerHTML = `<div class="loading">LOADING REPORT ${date}...</div>`;
-
+  body.innerHTML = `<p style="font-family:Orbitron,monospace;font-size:12px;color:#4a5080;letter-spacing:3px">LOADING ${date}...</p>`;
   try {
-    const text = await loadReport(filename);
-    // Simple markdown → HTML
-    const html = text
+    const text = await (await get(`reports/${file}`)).text();
+    body.innerHTML = text
       .replace(/^## (.+)$/gm, "<h2>$1</h2>")
       .replace(/^### (.+)$/gm, "<h3>$1</h3>")
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/```([\s\S]*?)```/g, "<pre>$1</pre>")
       .replace(/\n/g, "<br>");
-    content.innerHTML = html;
   } catch {
-    content.innerHTML = `<div class="error-msg">Failed to load report</div>`;
+    body.innerHTML = `<p style="color:#ff4466;font-family:Orbitron,monospace;font-size:12px">FAILED TO LOAD REPORT</p>`;
   }
 }
 
 function closeModal() {
-  document.getElementById("modal-overlay").classList.remove("active");
+  document.getElementById("modal").classList.remove("active");
 }
 
-document.getElementById("modal-overlay").addEventListener("click", function(e) {
-  if (e.target === this) closeModal();
+document.getElementById("modal").addEventListener("click", e => {
+  if (e.target === document.getElementById("modal")) closeModal();
 });
 
-// ── INIT ─────────────────────────────────────────────────────
+/* ── INIT ── */
 async function init() {
-  const [stats, history] = await Promise.all([loadStats(), loadHistory()]);
+  try {
+    const stats = await (await get("reports/stats.json")).json();
+    document.getElementById("s-reports").textContent = stats.totalReports || 0;
+    document.getElementById("s-repos").textContent = (stats.topRepos||[]).length * 10 + "+";
+    if (stats.topRepos?.length) renderChart(stats.topRepos);
+  } catch {}
 
-  if (stats) {
-    document.getElementById("stat-reports").textContent = stats.totalReports || 0;
-    document.getElementById("stat-repos").textContent = (stats.topRepos || []).length * 10 + "+";
-    if (stats.topRepos && stats.topRepos.length) renderChart(stats.topRepos);
+  try {
+    const history = await (await get("reports/history.json")).json();
+    document.getElementById("s-streak").textContent = history.length || 0;
+    renderReports(history);
+  } catch {
+    renderReports([]);
   }
-
-  document.getElementById("stat-streak").textContent = history.length || 0;
-  renderReports(history);
 }
 
 init();
