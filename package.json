@@ -1,0 +1,14 @@
+{
+  "name": "web3-builder",
+  "version": "1.0.0",
+  "description": "Daily AI-powered digest of what Web3 builders are actually shipping",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "node-fetch": "2.7.0"
+  },
+  "author": "volkkov",
+  "license": "MIT"
+}
