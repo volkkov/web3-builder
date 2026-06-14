@@ -1,32 +1,32 @@
 {
-  "lastUpdated": "2026-06-14T07:59:06.050Z",
-  "totalReports": 2,
+  "lastUpdated": "2026-06-14T10:49:54.988Z",
+  "totalReports": 3,
   "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34",
   "latestDate": "2026-06-14",
   "topRepos": [
     {
       "name": "union",
-      "stars": 73966,
+      "stars": 73967,
       "language": "Rust"
     },
     {
       "name": "fuel-core",
-      "stars": 57015,
+      "stars": 57016,
       "language": "Rust"
     },
     {
       "name": "go-ethereum",
-      "stars": 51153,
+      "stars": 51154,
       "language": "Go"
     },
     {
       "name": "ccxt",
-      "stars": 42912,
+      "stars": 42913,
       "language": "Python"
     },
     {
       "name": "hey-1",
-      "stars": 29396,
+      "stars": 29395,
       "language": "TypeScript"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "name": "full-blockchain-solidity-course-js",
-      "stars": 14010,
+      "stars": 14009,
       "language": "Unknown"
     },
     {
