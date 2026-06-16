@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-06-16T09:02:38.634Z",
-  "totalReports": 7,
+  "lastUpdated": "2026-06-16T12:55:17.072Z",
+  "totalReports": 8,
   "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34",
   "latestDate": "2026-06-16",
   "topRepos": [
     {
       "name": "union",
-      "stars": 73960,
+      "stars": 73959,
       "language": "Rust"
     },
     {
@@ -16,12 +16,12 @@
     },
     {
       "name": "go-ethereum",
-      "stars": 51177,
+      "stars": 51176,
       "language": "Go"
     },
     {
       "name": "ccxt",
-      "stars": 42935,
+      "stars": 42936,
       "language": "Python"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "name": "solana",
-      "stars": 14912,
+      "stars": 14914,
       "language": "Rust"
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "DeFi-Developer-Road-Map",
-      "stars": 10761,
+      "stars": 10762,
       "language": "JavaScript"
     }
   ]
