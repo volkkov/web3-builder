@@ -36,8 +36,8 @@ jobs:
 
       - name: Commit and push report
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "volkkov"
+          git config user.email "volkkov@users.noreply.github.com"
           git add reports/
           git stash || true
           git pull origin main --rebase
