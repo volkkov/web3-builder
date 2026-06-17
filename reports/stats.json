@@ -1,27 +1,27 @@
 {
-  "lastUpdated": "2026-06-16T14:14:35.475Z",
-  "totalReports": 9,
+  "lastUpdated": "2026-06-17T12:17:56.326Z",
+  "totalReports": 10,
   "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34",
-  "latestDate": "2026-06-16",
+  "latestDate": "2026-06-17",
   "topRepos": [
     {
       "name": "union",
-      "stars": 73961,
+      "stars": 73959,
       "language": "Rust"
     },
     {
       "name": "fuel-core",
-      "stars": 57014,
+      "stars": 57011,
       "language": "Rust"
     },
     {
       "name": "go-ethereum",
-      "stars": 51178,
+      "stars": 51176,
       "language": "Go"
     },
     {
       "name": "ccxt",
-      "stars": 42938,
+      "stars": 42955,
       "language": "Python"
     },
     {
@@ -31,12 +31,12 @@
     },
     {
       "name": "web3.js",
-      "stars": 19936,
+      "stars": 19935,
       "language": "TypeScript"
     },
     {
       "name": "gun",
-      "stars": 19057,
+      "stars": 19055,
       "language": "JavaScript"
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "DeFi-Developer-Road-Map",
-      "stars": 10763,
+      "stars": 10765,
       "language": "JavaScript"
     }
   ]
