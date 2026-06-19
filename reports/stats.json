@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-06-19T12:07:21.354Z",
-  "totalReports": 14,
+  "lastUpdated": "2026-06-19T12:51:02.142Z",
+  "totalReports": 15,
   "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34",
   "latestDate": "2026-06-19",
   "topRepos": [
     {
       "name": "union",
-      "stars": 73957,
+      "stars": 73955,
       "language": "Rust"
     },
     {
       "name": "fuel-core",
-      "stars": 57007,
+      "stars": 57006,
       "language": "Rust"
     },
     {
@@ -21,12 +21,12 @@
     },
     {
       "name": "ccxt",
-      "stars": 42970,
+      "stars": 42971,
       "language": "Python"
     },
     {
       "name": "hey-1",
-      "stars": 29391,
+      "stars": 29390,
       "language": "TypeScript"
     },
     {
