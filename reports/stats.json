@@ -1,47 +1,47 @@
 {
-  "lastUpdated": "2026-06-19T12:51:02.142Z",
-  "totalReports": 15,
+  "lastUpdated": "2026-06-20T10:33:23.716Z",
+  "totalReports": 16,
   "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34",
-  "latestDate": "2026-06-19",
+  "latestDate": "2026-06-20",
   "topRepos": [
     {
       "name": "union",
-      "stars": 73955,
+      "stars": 73953,
       "language": "Rust"
     },
     {
       "name": "fuel-core",
-      "stars": 57006,
+      "stars": 57003,
       "language": "Rust"
     },
     {
       "name": "go-ethereum",
-      "stars": 51194,
+      "stars": 51198,
       "language": "Go"
     },
     {
       "name": "ccxt",
-      "stars": 42971,
+      "stars": 42978,
       "language": "Python"
     },
     {
       "name": "hey-1",
-      "stars": 29390,
+      "stars": 29389,
       "language": "TypeScript"
     },
     {
       "name": "web3.js",
-      "stars": 19937,
+      "stars": 19935,
       "language": "TypeScript"
     },
     {
       "name": "gun",
-      "stars": 19055,
+      "stars": 19059,
       "language": "JavaScript"
     },
     {
       "name": "solana",
-      "stars": 14918,
+      "stars": 14917,
       "language": "Rust"
     },
     {
