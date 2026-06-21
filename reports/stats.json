@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-06-20T11:21:35.305Z",
-  "totalReports": 17,
+  "lastUpdated": "2026-06-21T11:17:08.587Z",
+  "totalReports": 18,
   "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34",
-  "latestDate": "2026-06-20",
+  "latestDate": "2026-06-21",
   "topRepos": [
     {
       "name": "union",
@@ -11,22 +11,22 @@
     },
     {
       "name": "fuel-core",
-      "stars": 57003,
+      "stars": 57000,
       "language": "Rust"
     },
     {
       "name": "go-ethereum",
-      "stars": 51198,
+      "stars": 51196,
       "language": "Go"
     },
     {
       "name": "ccxt",
-      "stars": 42979,
+      "stars": 42995,
       "language": "Python"
     },
     {
       "name": "hey-1",
-      "stars": 29389,
+      "stars": 29385,
       "language": "TypeScript"
     },
     {
@@ -36,22 +36,22 @@
     },
     {
       "name": "gun",
-      "stars": 19059,
+      "stars": 19060,
       "language": "JavaScript"
     },
     {
       "name": "solana",
-      "stars": 14917,
+      "stars": 14918,
       "language": "Rust"
     },
     {
       "name": "full-blockchain-solidity-course-js",
-      "stars": 14015,
+      "stars": 14014,
       "language": "Unknown"
     },
     {
       "name": "DeFi-Developer-Road-Map",
-      "stars": 10768,
+      "stars": 10769,
       "language": "JavaScript"
     }
   ]
