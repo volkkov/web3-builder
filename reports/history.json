@@ -1,6 +1,39 @@
 [
   {
     "date": "2026-06-24",
+    "timestamp": "2026-06-24T11:48:15.495Z",
+    "reportFile": "report-2026-06-24.md",
+    "topRepos": [
+      {
+        "name": "unionlabs/union",
+        "stars": 73949,
+        "language": "Rust"
+      },
+      {
+        "name": "FuelLabs/fuel-core",
+        "stars": 56998,
+        "language": "Rust"
+      },
+      {
+        "name": "ethereum/go-ethereum",
+        "stars": 51203,
+        "language": "Go"
+      },
+      {
+        "name": "ccxt/ccxt",
+        "stars": 43038,
+        "language": "Python"
+      },
+      {
+        "name": "slymnoyann/hey-1",
+        "stars": 29385,
+        "language": "TypeScript"
+      }
+    ],
+    "wallet": "0x509D9bf4358831b63065E4822919EB60C9441B34"
+  },
+  {
+    "date": "2026-06-24",
     "timestamp": "2026-06-24T10:51:36.233Z",
     "reportFile": "report-2026-06-24.md",
     "topRepos": [
